@@ -31,6 +31,7 @@ class UI(QMainWindow):
         #Combobox for destination langugage
         self.DestLang = self.findChild(QComboBox, "DestLang")
         self.DestLang.addItems(language)
+        self.DestLang.currentText()
 
         #Textbox for translation
         self.DestText = self.findChild(QTextEdit, "DestText")
@@ -46,6 +47,7 @@ class UI(QMainWindow):
         #button for source language
         self.SrcLang = self.findChild(QComboBox, "SrcLang")
         self.SrcLang.addItems(language)
+        self.SrcLang.currentText()
 
         #button for translation
         self.Translate = self.findChild(QPushButton, "Translate")
@@ -84,10 +86,11 @@ class UI(QMainWindow):
             fixfloat = str(guess.confidence)
             self.DetectLang.setText(guess.lang +" with an confidence of : " + fixfloat)
     
-    @pyqtSlot()
-    def cmdTranslate():
+    def cmdTranslate(self):
         translator = Translator()
-        translated=translator.translate(text= self.textEdit.toPlainText(), src = self.SrcLang.toPlainText(), dest = self.DestLang.toPlainText())
+        SrcLangText = self.SrcLang.currentText()
+        DestLangText = self.DestLang.currentText()
+        translated=translator.translate(text= self.textEdit.toPlainText(), src = SrcLangText, dest = DestLangText)
         self.DestText.setText(translated.text)
         self.DetectLang.clear()
 
