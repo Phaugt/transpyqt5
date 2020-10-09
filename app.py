@@ -4,7 +4,6 @@ from PyQt5 import uic
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import pyqtSlot
 import sys
-import os
 #function dep
 import pyperclip
 from googletrans import Translator, LANGUAGES
@@ -14,7 +13,6 @@ import image_rc
 # variables
 #language = LANGCODES = list(LANGUAGES.values()) #not using the complete list from googletrans
 language = ["norwegian", "swedish", "english"]
-dir = os.getcwd()
 # GUI
 class UI(QMainWindow):
     def __init__(self):
