@@ -1,8 +1,10 @@
 #gui dep
-from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit
+from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp
 from PyQt5 import uic
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import pyqtSlot
 import sys
+import os
 #function dep
 import pyperclip
 from googletrans import Translator, LANGUAGES
@@ -12,7 +14,7 @@ import image_rc
 # variables
 #language = LANGCODES = list(LANGUAGES.values()) #not using the complete list from googletrans
 language = ["norwegian", "swedish", "english"]
-
+dir = os.getcwd()
 # GUI
 class UI(QMainWindow):
     def __init__(self):
@@ -60,7 +62,11 @@ class UI(QMainWindow):
         self.PasteCP = self.findChild(QPushButton, "PasteCP")
         self.PasteCP.clicked.connect(self.cmdPasteCP)
 
+        #exit app
+        self.ExitApp = self.findChild(QPushButton, "Exit")
+        self.ExitApp.clicked.connect(qApp.quit)
         #show gui
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.show()
 
     def cmdPasteCP(self):
@@ -94,6 +100,8 @@ class UI(QMainWindow):
         self.DestText.setText(translated.text)
         self.DetectLang.clear()
 
+
 app = QApplication(sys.argv)
+app.setStyleSheet('QMainWindow{border: 1px solid black;}')
 window = UI()
 app.exec_()
