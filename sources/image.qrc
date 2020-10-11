@@ -1,7 +1,57 @@
 <RCC>
-  <qresource prefix="logo">
-    <file>0.ico</file>
-    <file>0.png</file>
-    <file>Volue_icon.svg</file>
+  <qresource prefix="icons">
+    <file>001-books.png</file>
+    <file>002-cd.png</file>
+    <file>003-vinyl.png</file>
+    <file>004-horror.png</file>
+    <file>005-cardboard box.png</file>
+    <file>006-bookstore.png</file>
+    <file>007-books.png</file>
+    <file>008-books.png</file>
+    <file>009-book.png</file>
+    <file>010-books.png</file>
+    <file>011-bookshelf.png</file>
+    <file>012-books.png</file>
+    <file>013-greek.png</file>
+    <file>014-stack.png</file>
+    <file>015-open book.png</file>
+    <file>016-bookshelf.png</file>
+    <file>017-books.png</file>
+    <file>018-books.png</file>
+    <file>019-bookshelf.png</file>
+    <file>020-mystery.png</file>
+    <file>021-bookstore.png</file>
+    <file>022-lamp.png</file>
+    <file>023-ebook.png</file>
+    <file>024-audio book.png</file>
+    <file>025-wrapping paper.png</file>
+    <file>026-Science fiction.png</file>
+    <file>027-book stack.png</file>
+    <file>028-bookshelf.png</file>
+    <file>029-book.png</file>
+    <file>030-book.png</file>
+    <file>031-earth globe.png</file>
+    <file>032-books.png</file>
+    <file>033-deck.png</file>
+    <file>034-books.png</file>
+    <file>035-book.png</file>
+    <file>036-book.png</file>
+    <file>037-medieval.png</file>
+    <file>038-book stack.png</file>
+    <file>039-open book.png</file>
+    <file>040-coffee mug.png</file>
+    <file>041-books.png</file>
+    <file>042-wrapping paper.png</file>
+    <file>043-tote bag.png</file>
+    <file>044-gift.png</file>
+    <file>045-bookshelf.png</file>
+    <file>046-glasses.png</file>
+    <file>047-illuminati.png</file>
+    <file>048-books.png</file>
+    <file>049-armchair.png</file>
+    <file>050-bookshelf.png</file>
+    <file>open-book.png</file>
+    <file>64_open-book.png</file>
+    <file>open-book.png</file>
   </qresource>
 </RCC>

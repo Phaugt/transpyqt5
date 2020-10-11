@@ -13,7 +13,7 @@ import image_rc
 #icon taskbar
 try:
     from PyQt5.QtWinExtras import QtWin
-    myappid = 'mycompany.myproduct.subproduct.version'
+    myappid = 'hobby.python.translate.program'
     QtWin.setCurrentProcessExplicitAppUserModelID(myappid)    
 except ImportError:
     pass
@@ -26,7 +26,7 @@ language = ["norwegian", "swedish", "english", "polish"]
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        UIFile = QtCore.QFile('main.ui')
+        UIFile = QtCore.QFile('app_ui.ui')
         UIFile.open(QtCore.QFile.ReadOnly)
         uic.loadUi(UIFile, self)
         UIFile.close()
@@ -124,6 +124,6 @@ class UI(QMainWindow):
 
 app = QApplication(sys.argv)
 app.setStyleSheet('QMainWindow{border: 1px solid black;}')
-app.setWindowIcon(QtGui.QIcon('sources/Volue_icon.svg'))
+app.setWindowIcon(QtGui.QIcon('sources/64_open-book.png'))
 window = UI()
 app.exec_()
