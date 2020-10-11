@@ -2,7 +2,7 @@
 from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp
 from PyQt5 import uic
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import Qt
 import sys
 #function dep
 import pyperclip
@@ -12,14 +12,15 @@ import image_rc
 
 # variables
 #language = LANGCODES = list(LANGUAGES.values()) #not using the complete list from googletrans
-language = ["norwegian", "swedish", "english"]
+language = ["norwegian", "swedish", "english", "polish"]
+
 # GUI
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
         uic.loadUi("main.ui", self)
         ## find the widgets in the xml file
-        
+
         #button to clear all textboxes
         self.ClearBox = self.findChild(QPushButton, "ClearBox")
         self.ClearBox.clicked.connect(self.cmdClearBox)
@@ -41,7 +42,7 @@ class UI(QMainWindow):
 
         #button for detecting langugage
         self.DetectLang_2 = self.findChild(QPushButton, "DetectLang_2")
-        self.DetectLang_2.setToolTip("Guesses the langugage if confidence is above 50% \nwhen guessing language outpuy of the translation is set to Swedish")
+        self.DetectLang_2.setToolTip("Guesses the langugage if confidence is above 50% \nwhen guessing language output of the translation is set to Swedish")
         self.DetectLang_2.clicked.connect(self.cmdDetect)
 
         #button for source language
@@ -80,7 +81,6 @@ class UI(QMainWindow):
     def cmdCopy(self):
         pyperclip.copy(self.DestText.toPlainText())
     
-    @pyqtSlot()
     def cmdDetect(self):
         translator = Translator()
         guess = translator.detect(text=self.textEdit.toPlainText())
@@ -97,6 +97,27 @@ class UI(QMainWindow):
         translated=translator.translate(text= self.textEdit.toPlainText(), src = SrcLangText, dest = DestLangText)
         self.DestText.setText(translated.text)
         self.DetectLang.clear()
+
+    #move window frameless
+    def mousePressEvent(self, event):
+    
+        if event.buttons() == Qt.RightButton:
+            self.dragPos = event.globalPos()
+            event.accept()
+        elif event.buttons() == Qt.LeftButton:
+            self.dragPos = event.globalPos()
+            event.accept()
+    
+    def mouseMoveEvent(self, event):
+    
+        if event.buttons() == Qt.RightButton:
+            self.move(self.pos() + event.globalPos() - self.dragPos)
+            self.dragPos = event.globalPos()
+            event.accept()
+        elif event.buttons() == Qt.LeftButton:
+            self.move(self.pos() + event.globalPos() - self.dragPos)
+            self.dragPos = event.globalPos()
+            event.accept()
 
 
 app = QApplication(sys.argv)

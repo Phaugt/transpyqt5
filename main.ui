@@ -566,6 +566,9 @@
     <activeoff>:/logo/Volue_icon.svg</activeoff>
     <activeon>:/logo/Volue_icon.svg</activeon>:/logo/Volue_icon.svg</iconset>
   </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::GroupedDragging</set>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="DestLang">
     <property name="geometry">
