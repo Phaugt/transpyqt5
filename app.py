@@ -89,6 +89,7 @@ class UI(QMainWindow):
         translator = Translator()
         SrcLangText = self.SrcLang.currentText()
         DestLangText = self.DestLang.currentText()
+        #to stop app from crash when text had been cleared
         self.CheckBlank = self.textEdit.toPlainText()
 
         if len(self.CheckBlank) == 0:

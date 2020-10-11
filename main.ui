@@ -559,15 +559,14 @@
   </property>
   <property name="windowIcon">
    <iconset resource="sources/image.qrc">
-    <normaloff>:/logo/Volue_icon.svg</normaloff>
-    <normalon>:/logo/Volue_icon.svg</normalon>
-    <disabledoff>:/logo/Volue_icon.svg</disabledoff>
-    <disabledon>:/logo/Volue_icon.svg</disabledon>
-    <activeoff>:/logo/Volue_icon.svg</activeoff>
-    <activeon>:/logo/Volue_icon.svg</activeon>:/logo/Volue_icon.svg</iconset>
-  </property>
-  <property name="dockOptions">
-   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::GroupedDragging</set>
+    <normaloff>:/logo/0.ico</normaloff>
+    <normalon>:/logo/0.ico</normalon>
+    <disabledoff>:/logo/0.ico</disabledoff>
+    <disabledon>:/logo/0.ico</disabledon>
+    <activeoff>:/logo/0.ico</activeoff>
+    <activeon>:/logo/0.ico</activeon>
+    <selectedoff>:/logo/Volue_icon.svg</selectedoff>
+    <selectedon>:/logo/Volue_icon.svg</selectedon>:/logo/0.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="DestLang">
