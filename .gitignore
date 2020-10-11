@@ -1,1 +1,5 @@
 /ignore
+translator.exe.lnk
+/dist/*
+/build/*
+/__pycache__/*
