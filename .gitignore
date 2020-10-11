@@ -2,4 +2,4 @@
 translator.exe.lnk
 /dist/*
 /build/*
-/__pycache__/*
+/__pycache__
