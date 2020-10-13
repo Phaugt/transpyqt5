@@ -80,6 +80,7 @@ class UI(QMainWindow):
         translator = Translator()
         guess = translator.detect(text=self.textEdit.toPlainText())
         if guess.confidence > 0.5:
+            self.DestLang.setCurrentText("swedish")
             translated=translator.translate(text= self.textEdit.toPlainText() , src = guess.lang, dest = 'swedish')
             self.DestText.setText(translated.text)
             fixfloat = str(guess.confidence)
