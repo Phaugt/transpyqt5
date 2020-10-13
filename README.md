@@ -10,9 +10,15 @@ Clone the repo to a location of your choice
 Todo: Standalone installer/Onefile with pyinstaller
 
 ## Usage
-![GUI image]()
+Overview of the GUI
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui.PNG)
+
+Lists with hardcoded languages (can be changed to use the googletrans list)
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui_translation.PNG)
+
+Detect the language from the text (hardcoded to translate to swedish)
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui_detect.PNG)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
