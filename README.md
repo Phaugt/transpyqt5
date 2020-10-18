@@ -7,7 +7,9 @@ A simple GUI that handles the translation for you instead of using your webbrows
 ## Installation
 
 Clone the repo to a location of your choice
+
 Todo: Standalone installer/Onefile with pyinstaller
+https://github.com/Phaugt/transqyqt5/issues/1
 
 ## Usage
 Overview of the GUI
