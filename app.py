@@ -2,8 +2,8 @@
 from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp, QMessageBox
 from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
-import sys
+from PyQt5.QtCore import Qt, QFile
+import sys, os
 #function dep
 import pyperclip
 from googletrans import Translator, LANGUAGES
@@ -17,17 +17,22 @@ try:
     QtWin.setCurrentProcessExplicitAppUserModelID(myappid)    
 except ImportError:
     pass
-
+#pyinstaller
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath('.'), relative_path)
 # variables
-#language = LANGCODES = list(LANGUAGES.values()) #not using the complete list from googletrans
 language = ["norwegian", "swedish", "english", "polish"]
+tr_gui = resource_path("app_ui.ui")
+tr_icon = resource_path("./icons/64_translate.png")
 
 # GUI
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        UIFile = QtCore.QFile('app_ui.ui')
-        UIFile.open(QtCore.QFile.ReadOnly)
+        UIFile = QFile(resource_path(tr_gui))
+        UIFile.open(QFile.ReadOnly)
         uic.loadUi(UIFile, self)
         UIFile.close()
 
@@ -60,8 +65,7 @@ class UI(QMainWindow):
         self.Exit.clicked.connect(qApp.quit)
         
         #show gui
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        self.show()
+        self.setWindowFlags(Qt.FramelessWindowHint)
 
     def cmdPasteCP(self):
         self.textEdit.clear()
@@ -125,6 +129,7 @@ class UI(QMainWindow):
 
 app = QApplication(sys.argv)
 app.setStyleSheet('QMainWindow{border: 1px solid black;}')
-app.setWindowIcon(QtGui.QIcon('sources/64_open-book.png'))
+app.setWindowIcon(QIcon(resource_path(tr_icon)))
 window = UI()
+window.show()
 app.exec_()
