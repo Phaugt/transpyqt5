@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['app.py'],
-             pathex=['P:\\GIT\\transqyqt5'],
+             pathex=['P:\\GIT\\transpyqt5'],
              binaries=[],
              datas=[('app_ui.ui', '.'),('image_rc.py', '.'), ('./icons/*', 'icons')],
              hiddenimports=[],

@@ -94,6 +94,8 @@ class UI(QMainWindow):
             pass
         except AttributeError:
             pass
+        except:
+            guess = None
         finally:
             pass
     
@@ -102,9 +104,9 @@ class UI(QMainWindow):
         SrcLangText = self.SrcLang.currentText()
         DestLangText = self.DestLang.currentText()
         #to stop app from crash when text had been cleared
-        self.CheckBlank = self.textEdit.toPlainText()
+        CheckBlank = self.textEdit.toPlainText()
         try:
-            if len(self.CheckBlank) == 0:
+            if len(CheckBlank) == 0:
                 QMessageBox.information(self, "ERROR!", "No text to translate, add text and try again!")
         
             else:
@@ -115,6 +117,8 @@ class UI(QMainWindow):
             pass
         except AttributeError:
             pass
+        except:
+            CheckBlank = None
         finally:
             pass
 
