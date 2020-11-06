@@ -1,4 +1,4 @@
-# transqyqt5
+# transpyqt5
 
 # Translate with help from google translate
 
@@ -13,13 +13,13 @@ https://github.com/Phaugt/transqyqt5/issues/1
 
 ## Usage
 Overview of the GUI
-![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui.PNG)
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/icons/gui.PNG)
 
 Lists with hardcoded languages (can be changed to use the googletrans list)
-![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui_translation.PNG)
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/icons/gui_translation.PNG)
 
 Detect the language from the text (hardcoded to translate to swedish)
-![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/sources/gui_detect.PNG)
+![GUI image](https://github.com/Phaugt/transqyqt5/blob/main/icons/gui_detect.PNG)
 
 
 ## Contributing

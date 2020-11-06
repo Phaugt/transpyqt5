@@ -25,7 +25,7 @@ def resource_path(relative_path):
 # variables
 language = ["norwegian", "swedish", "english", "polish"]
 tr_gui = resource_path("app_ui.ui")
-tr_icon = resource_path("./icons/64_translate.png")
+tr_icon = resource_path("./icons/64translate.png")
 
 # GUI
 class UI(QMainWindow):
@@ -83,12 +83,19 @@ class UI(QMainWindow):
     def cmdDetect(self):
         translator = Translator()
         guess = translator.detect(text=self.textEdit.toPlainText())
-        if guess.confidence > 0.5:
-            self.DestLang.setCurrentText("swedish")
-            translated=translator.translate(text= self.textEdit.toPlainText() , src = guess.lang, dest = 'swedish')
-            self.DestText.setText(translated.text)
-            fixfloat = str(guess.confidence)
-            self.DetectLang.setText(guess.lang +" with an confidence of : " + fixfloat)
+        try:
+            if guess.confidence > 0.5:
+                self.DestLang.setCurrentText("swedish")
+                translated=translator.translate(text= self.textEdit.toPlainText() , src = guess.lang, dest = 'swedish')
+                self.DestText.setText(translated.text)
+                fixfloat = str(guess.confidence)
+                self.DetectLang.setText(guess.lang +" with an confidence of : " + fixfloat)
+        except NameError:
+            pass
+        except AttributeError:
+            pass
+        finally:
+            pass
     
     def cmdTranslate(self):
         translator = Translator()
@@ -96,14 +103,20 @@ class UI(QMainWindow):
         DestLangText = self.DestLang.currentText()
         #to stop app from crash when text had been cleared
         self.CheckBlank = self.textEdit.toPlainText()
-
-        if len(self.CheckBlank) == 0:
-            QMessageBox.information(self, "ERROR!", "No text to translate, add text and try again!")
+        try:
+            if len(self.CheckBlank) == 0:
+                QMessageBox.information(self, "ERROR!", "No text to translate, add text and try again!")
         
-        else:
-            translated=translator.translate(text= self.textEdit.toPlainText(), src = SrcLangText, dest = DestLangText)
-            self.DestText.setText(translated.text)
-            self.DetectLang.clear()
+            else:
+                translated=translator.translate(text= self.textEdit.toPlainText(), src = SrcLangText, dest = DestLangText)
+                self.DestText.setText(translated.text)
+                self.DetectLang.clear()
+        except NameError:
+            pass
+        except AttributeError:
+            pass
+        finally:
+            pass
 
     #move window frameless
     def mousePressEvent(self, event):
