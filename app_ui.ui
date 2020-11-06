@@ -39,7 +39,7 @@
     <normaloff>:/icons/64_open-book.png</normaloff>:/icons/64_open-book.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 141);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="DestLang">
@@ -825,7 +825,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Clear text</string>
@@ -1678,7 +1678,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Detect Language</string>
@@ -2561,7 +2561,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Copy Translation</string>
@@ -3345,7 +3345,7 @@
      </palette>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Translate</string>
@@ -3916,7 +3916,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Paste clipboard</string>
@@ -4494,7 +4494,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(0, 0, 141);</string>
     </property>
     <property name="text">
      <string>Exit</string>
@@ -4503,7 +4503,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="sources/image.qrc"/>
+  <include location="icons/image.qrc"/>
  </resources>
  <connections/>
 </ui>

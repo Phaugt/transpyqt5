@@ -1,7 +1,7 @@
 #gui dep
 from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp, QMessageBox
 from PyQt5 import uic, QtCore, QtGui
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPalette, QLinearGradient, QColor, QBrush
 from PyQt5.QtCore import Qt, QFile
 import sys, os
 #function dep
@@ -131,5 +131,11 @@ app = QApplication(sys.argv)
 app.setStyleSheet('QMainWindow{border: 1px solid black;}')
 app.setWindowIcon(QIcon(resource_path(tr_icon)))
 window = UI()
+p = QPalette()
+gradient = QLinearGradient(0, 0, 0, 400)
+gradient.setColorAt(0.0, QColor('blue'))
+gradient.setColorAt(1.0, QColor('dark blue'))
+p.setBrush(QPalette.Window, QBrush(gradient))
+window.setPalette(p)
 window.show()
 app.exec_()
