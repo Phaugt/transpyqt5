@@ -1,7 +1,7 @@
 #gui dep
 from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp, QMessageBox
 from PyQt5 import uic, QtCore, QtGui
-from PyQt5.QtGui import QIcon, QPalette, QLinearGradient, QColor, QBrush
+from PyQt5.QtGui import QIcon, QPalette, QLinearGradient, QColor, QBrush, QImage, QPixmap
 from PyQt5.QtCore import Qt, QFile
 import sys, os
 #function dep
@@ -45,8 +45,8 @@ class UI(QMainWindow):
         #Combobox for destination langugage
         self.DestLang.addItems(language)
         self.DestLang.currentText()
-
-
+        image = QImage(resource_path(tr_icon))
+        self.Header_2.setPixmap(QPixmap(image))
         #button for detecting langugage
         self.DetectLang_2.setToolTip("Guesses the langugage if confidence is above 50% \nwhen guessing language output of the translation is set to Swedish")
         self.DetectLang_2.clicked.connect(self.cmdDetect)
