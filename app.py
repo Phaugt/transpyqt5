@@ -7,8 +7,7 @@ import sys, os
 #function dep
 import pyperclip
 from googletrans import Translator, LANGUAGES
-#for images and other sources
-import image_rc
+
 
 #icon taskbar
 try:
