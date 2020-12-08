@@ -12,12 +12,13 @@ from googletrans import Translator, LANGUAGES
 #icon taskbar
 try:
     from PyQt5.QtWinExtras import QtWin
-    myappid = 'hobby.python.translate.program'
+    myappid = 'pythonexplained.python.translate.program'
     QtWin.setCurrentProcessExplicitAppUserModelID(myappid)    
 except ImportError:
     pass
 #pyinstaller
 def resource_path(relative_path):
+    """"for pyinstaller"""
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath('.'), relative_path)
@@ -25,12 +26,13 @@ def resource_path(relative_path):
 language = ["norwegian", "swedish", "english", "polish"]
 tr_gui = resource_path("app_ui.ui")
 tr_icon = resource_path("./icons/64translate.png")
+tr_bg = resource_path("./icons/appbg.png")
 
 # GUI
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
-        UIFile = QFile(resource_path(tr_gui))
+        UIFile = QFile(tr_gui)
         UIFile.open(QFile.ReadOnly)
         uic.loadUi(UIFile, self)
         UIFile.close()
@@ -44,8 +46,8 @@ class UI(QMainWindow):
         #Combobox for destination langugage
         self.DestLang.addItems(language)
         self.DestLang.currentText()
-        image = QImage(resource_path(tr_icon))
-        self.Header_2.setPixmap(QPixmap(image))
+        bgimage = QImage(tr_bg)
+        self.appbg.setPixmap(QPixmap(bgimage))
         #button for detecting langugage
         self.DetectLang_2.setToolTip("Guesses the langugage if confidence is above 50% \nwhen guessing language output of the translation is set to Swedish")
         self.DetectLang_2.clicked.connect(self.cmdDetect)
@@ -78,7 +80,7 @@ class UI(QMainWindow):
 
     def cmdCopy(self):
         pyperclip.copy(self.DestText.toPlainText())
-    
+
     def cmdDetect(self):
         translator = Translator()
         guess = translator.detect(text=self.textEdit.toPlainText())
@@ -142,16 +144,33 @@ class UI(QMainWindow):
             self.dragPos = event.globalPos()
             event.accept()
 
+style = '''
+QPushButton, QLineEdit, QSpinBox, QComboBox {
+    background-color: #eeeeee;
+    selection-color: #eeeeee;
+    border-color: #393E46;
+    border: 2px;
+    color: #393E46;
+}
+QLabel {
+    color: #eeeeee;
+}
+QPushButton:hover,
+QLineEdit:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}  
+QPushButton:pressed {
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 3px;
+}  
+'''
 
 app = QApplication(sys.argv)
 app.setStyleSheet('QMainWindow{border: 1px solid black;}')
-app.setWindowIcon(QIcon(resource_path(tr_icon)))
+app.setWindowIcon(QIcon(tr_icon))
+app.setStyleSheet(style) 
 window = UI()
-p = QPalette()
-gradient = QLinearGradient(0, 0, 0, 400)
-gradient.setColorAt(0.0, QColor('blue'))
-gradient.setColorAt(1.0, QColor('dark blue'))
-p.setBrush(QPalette.Window, QBrush(gradient))
-window.setPalette(p)
 window.show()
 app.exec_()
