@@ -6,7 +6,7 @@ block_cipher = None
 a = Analysis(['app.py'],
              pathex=['P:\\GIT\\transpyqt5'],
              binaries=[],
-             datas=[('app_ui.ui', '.'), ('./icons/*', 'icons')],
+             datas=[('./icons/*', 'icons')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -26,7 +26,8 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False)
+          icon='./icons/55translate.ico',
+          console=False )
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
@@ -34,4 +35,4 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='Translator')
+               name='Translator APP')

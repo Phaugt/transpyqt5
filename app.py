@@ -25,7 +25,7 @@ def resource_path(relative_path):
 # variables
 language = ["norwegian", "swedish", "english", "polish"]
 tr_gui = resource_path("./icons/app_ui.ui")
-tr_icon = resource_path("./icons/64translate.png")
+tr_icon = resource_path("./icons/55translate.png")
 tr_bg = resource_path("./icons/appbg.png")
 translator = Translator()
 
