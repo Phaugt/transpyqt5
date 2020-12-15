@@ -1,8 +1,8 @@
 #gui dep
-from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp, QMessageBox
-from PyQt5 import uic, QtCore, QtGui
-from PyQt5.QtGui import QIcon, QPalette, QLinearGradient, QColor, QBrush, QImage, QPixmap
-from PyQt5.QtCore import Qt, QFile
+from PyQt5.QtWidgets import (QPlainTextEdit, QMainWindow, QApplication, QPushButton, QTextEdit, QComboBox, QLineEdit, qApp, QMessageBox)
+from PyQt5 import (uic, QtCore, QtGui)
+from PyQt5.QtGui import (QIcon, QPalette, QLinearGradient, QColor, QBrush, QImage, QPixmap)
+from PyQt5.QtCore import (Qt, QFile)
 import sys, os
 #function dep
 import pyperclip
@@ -24,9 +24,10 @@ def resource_path(relative_path):
     return os.path.join(os.path.abspath('.'), relative_path)
 # variables
 language = ["norwegian", "swedish", "english", "polish"]
-tr_gui = resource_path("app_ui.ui")
+tr_gui = resource_path("./icons/app_ui.ui")
 tr_icon = resource_path("./icons/64translate.png")
 tr_bg = resource_path("./icons/appbg.png")
+translator = Translator()
 
 # GUI
 class UI(QMainWindow):
@@ -82,44 +83,41 @@ class UI(QMainWindow):
         pyperclip.copy(self.DestText.toPlainText())
 
     def cmdDetect(self):
-        translator = Translator()
-        guess = translator.detect(text=self.textEdit.toPlainText())
+        textToDetect = text=self.textEdit.toPlainText()
         try:
-            if guess.confidence > 0.5:
+            
+            if textToDetect == "":
+                pass
+
+            else:
+                guess = translator.detect(textToDetect)
                 self.DestLang.setCurrentText("swedish")
-                translated=translator.translate(text= self.textEdit.toPlainText() , src = guess.lang, dest = 'swedish')
+                translated=translator.translate(text= self.textEdit.toPlainText(),dest = 'swedish' , src = guess.lang)
                 self.DestText.setText(translated.text)
-                fixfloat = str(guess.confidence)
-                self.DetectLang.setText(guess.lang +" with an confidence of : " + fixfloat)
+                self.DetectLang.setText(f"Detected langugage: {guess.lang}")
         except NameError:
             pass
         except AttributeError:
             pass
-        except:
-            guess = None
         finally:
             pass
     
     def cmdTranslate(self):
-        translator = Translator()
         SrcLangText = self.SrcLang.currentText()
         DestLangText = self.DestLang.currentText()
-        #to stop app from crash when text had been cleared
         CheckBlank = self.textEdit.toPlainText()
         try:
-            if len(CheckBlank) == 0:
+            if CheckBlank == "":
                 QMessageBox.information(self, "ERROR!", "No text to translate, add text and try again!")
         
             else:
-                translated=translator.translate(text= self.textEdit.toPlainText(), src = SrcLangText, dest = DestLangText)
+                translated=translator.translate(text= CheckBlank, src = SrcLangText, dest = DestLangText)
                 self.DestText.setText(translated.text)
                 self.DetectLang.clear()
         except NameError:
             pass
         except AttributeError:
             pass
-        except:
-            CheckBlank = None
         finally:
             pass
 
@@ -145,24 +143,38 @@ class UI(QMainWindow):
             event.accept()
 
 style = '''
-QPushButton, QLineEdit, QSpinBox, QComboBox {
+QPushButton, 
+QLineEdit, 
+QSpinBox, 
+QComboBox, 
+QTextEdit {
     background-color: #eeeeee;
     selection-color: #eeeeee;
     border-color: #393E46;
-    border: 2px;
+    border: 3px;
     color: #393E46;
+}
+QComboBox QAbstractItemView {
+    selection-color: #FED369;
+    selection-background-color: #222831;
+    background-color: #eeeeee;
+
 }
 QLabel {
     color: #eeeeee;
 }
 QPushButton:hover,
-QLineEdit:hover {
+QTextEdit:hover,
+QComboBox:hover {
     color: #000000;
-    background-color: #FFFFFF;
+    background-color: #F1F1F1;
+    border-color: #393E46;
+    border: 3px;
 }  
 QPushButton:pressed {
     color: #000000;
     background-color: #FFFFFF;
+    border-color: #393E46;
     border: 3px;
 }  
 '''
