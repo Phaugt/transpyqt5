@@ -3,10 +3,10 @@ from PyQt5.QtWidgets import QPlainTextEdit, QMainWindow, QApplication, QPushButt
 from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QIcon, QPalette, QLinearGradient, QColor, QBrush, QImage, QPixmap
 from PyQt5.QtCore import Qt, QFile
-import sys, os, json, re, requests
+import sys, os
 #function dep
 import pyperclip
-from google_trans_new import google_translator
+from googletrans import Translator, LANGUAGES
 
 
 #icon taskbar
@@ -27,7 +27,6 @@ language = ["norwegian", "swedish", "english", "polish"]
 tr_gui = resource_path("app_ui.ui")
 tr_icon = resource_path("./icons/64translate.png")
 tr_bg = resource_path("./icons/appbg.png")
-translator = google_translator()
 
 # GUI
 class UI(QMainWindow):
@@ -83,25 +82,32 @@ class UI(QMainWindow):
         pyperclip.copy(self.DestText.toPlainText())
 
     def cmdDetect(self):
-        """detect the langugae from text"""
-        textDetect = self.textEdit.toPlainText()
-        guessText = translator.detect(textDetect)
+        translator = Translator()
+        guess = translator.detect(text=self.textEdit.toPlainText())
         try:
-            if guessText(1) != "":
-                textTranslated = translator.translate(textDetect, lang_tgt='auto',lang_src='auto')
-                print(textTranslated)
-                self.DestText.setText(textTranslated)
-                print(self.DestText.toPlainText())
-        except Exception:
-            print("exception")
-
+            if guess.confidence > 0.5:
+                self.DestLang.setCurrentText("swedish")
+                translated=translator.translate(text= self.textEdit.toPlainText() , src = guess.lang, dest = 'swedish')
+                self.DestText.setText(translated.text)
+                fixfloat = str(guess.confidence)
+                self.DetectLang.setText(guess.lang +" with an confidence of : " + fixfloat)
+        except NameError:
+            pass
+        except AttributeError:
+            pass
+        except:
+            guess = None
+        finally:
+            pass
+    
     def cmdTranslate(self):
+        translator = Translator()
         SrcLangText = self.SrcLang.currentText()
         DestLangText = self.DestLang.currentText()
         #to stop app from crash when text had been cleared
         CheckBlank = self.textEdit.toPlainText()
         try:
-            if CheckBlank == "":
+            if len(CheckBlank) == 0:
                 QMessageBox.information(self, "ERROR!", "No text to translate, add text and try again!")
         
             else:
@@ -162,7 +168,7 @@ QPushButton:pressed {
 '''
 
 app = QApplication(sys.argv)
-app.setStyleSheet('QMainWindow{border: 1px #393E46;}')
+app.setStyleSheet('QMainWindow{border: 1px solid black;}')
 app.setWindowIcon(QIcon(tr_icon))
 app.setStyleSheet(style) 
 window = UI()
